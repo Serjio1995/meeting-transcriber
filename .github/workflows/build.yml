@@ -15,12 +15,16 @@ jobs:
         with: { python-version: "3.11" }
       - run: pip install -r requirements.txt -r requirements-dev.txt
       - run: python scripts/make_icons.py
-      - run: pytest -q tests || true
-      - run: pyinstaller packaging/transcriber.spec --noconfirm --clean
+      - run: pytest -q tests
+      - name: Build single-file Windows executable
+        run: pyinstaller packaging/transcriber.spec --noconfirm --clean
+        env:
+          ONEFILE: "1"
       - uses: actions/upload-artifact@v4
         with:
           name: MeetingTranscriber-win64
           path: dist/MeetingTranscriber.exe
+          if-no-files-found: error
 
   macos:
     runs-on: macos-latest
@@ -30,6 +34,7 @@ jobs:
         with: { python-version: "3.11" }
       - run: pip install -r requirements.txt -r requirements-dev.txt
       - run: python scripts/make_icons.py
+      - run: pytest -q tests
       - run: |
           pyinstaller packaging/transcriber.spec --noconfirm --clean
           APP="dist/Meeting Transcriber.app"
@@ -45,6 +50,7 @@ jobs:
         with:
           name: MeetingTranscriber-macOS
           path: dist/MeetingTranscriber-macOS.dmg
+          if-no-files-found: error
 
   release:
     if: startsWith(github.ref, 'refs/tags/v')

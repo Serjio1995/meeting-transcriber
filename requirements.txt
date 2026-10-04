@@ -1,0 +1,10 @@
+faster-whisper>=1.1.0,<2.0
+vosk>=0.3.45
+sounddevice>=0.4.6
+soundcard>=0.4.3
+numpy>=1.24
+psutil>=5.9
+pystray>=0.19
+pillow>=10.0
+pyperclip>=1.8
+requests>=2.31

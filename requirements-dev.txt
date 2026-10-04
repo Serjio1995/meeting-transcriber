@@ -1,0 +1,3 @@
+pyinstaller>=6.3
+pytest>=7
+keyboard>=0.13.5 ; sys_platform != "darwin"

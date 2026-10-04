@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+dmg/
+.venv/
+.pytest_cache/
+# генерируются скриптом scripts/make_icons.py
+assets/icon.png
+assets/icon.ico
+assets/icon.icns
